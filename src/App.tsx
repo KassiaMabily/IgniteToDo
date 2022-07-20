@@ -36,17 +36,47 @@ function App() {
     event.target.setCustomValidity("Esse campo é obrigatório!!");
   }
 
+  function deleteTask(taskIdToDelete: string) {
+    const tasksWithoutDeletedOne = tasks.filter(task => {
+      return task.id !== taskIdToDelete
+    })
+
+    setTasks(tasksWithoutDeletedOne);
+  }
+
+  function toggleTask(taskId: string) {
+
+    const indexTaskToUpdate = tasks.findIndex(task => {
+      return task.id === taskId;
+    });
+
+
+
+    let newTasks = [...tasks];
+    const isCompleted = !newTasks[indexTaskToUpdate].isCompleted
+    console.log(isCompleted)
+
+    newTasks[indexTaskToUpdate] = {
+      ...newTasks[indexTaskToUpdate],
+      isCompleted: isCompleted,
+      updatedAt: new Date()
+    }
+
+    setTasks(newTasks);
+  }
+
   const isNewTaskEmpty = newTaskContent.length === 0;
   const totalTasks = tasks.length;
   const totalCompletedTasks = tasks.filter(task => task.isCompleted).length;
 
   return (
-    <div>
+    <div className={styles.container}>
       <Header />
 
       <div className={styles.wrapper}>
         <form onSubmit={handleCreateNewTask}>
           <input
+            type="text"
             name="newTask"
             placeholder="Adicione uma nova tarefa"
             required
@@ -60,7 +90,7 @@ function App() {
           </button>
         </form>
 
-        <div className={styles.container}>
+        <div className={styles.content}>
           <div className={styles.header}>
             <div>
               <span className={styles.newTask}>Tarefas criadas</span>
@@ -73,13 +103,21 @@ function App() {
             </div>
           </div>
 
-          <div className={styles.content}>
+          <div className={styles.tasks}>
             {
-              tasks.map((task) => (
-                <Task key={task.id} task={task} />
-              ))
+              tasks.length > 0 ? (
+                tasks.map((task) => (
+                  <Task
+                    key={task.id}
+                    task={task}
+                    onDelete={deleteTask}
+                    onComplete={toggleTask}
+                  />
+                ))
+              ) : (
+                <EmptyToDo />
+              )
             }
-
           </div>
         </div>
       </div>

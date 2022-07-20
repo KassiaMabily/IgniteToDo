@@ -8,6 +8,8 @@
   align-items: center;
   justify-content: center;
 
+  color: var(--gray-300);
+
   gap: 1rem;
 }
 
