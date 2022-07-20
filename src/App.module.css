@@ -48,14 +48,58 @@
   background-color: var(--blue);
 }
 
+.container {
+  margin-top: 3rem;
+}
+
+.container .header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.container .header div {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.container .header div span:last-child {
+  background-color: var(--gray-400);
+  color: var(--gray-200);
+  padding: 0 0.5rem;
+  font-size: 0.75rem;
+  line-height: 1.6;
+  border-radius: 999px;
+}
+
+.newTask {
+  color: var(--blue)
+}
+
+.completedTask {
+  color: var(--purple);
+}
+
+.content {
+  margin: 2rem 0;
+}
+
 @media (max-width: 768px) {
   .wrapper {
     padding: 0 2rem;
+  }
+
+  .container {
+    margin-top: 1rem;
   }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
   .wrapper {
     padding: 0 8rem;
+  }
+
+  .container {
+    margin-top: 2rem;
   }
 }
