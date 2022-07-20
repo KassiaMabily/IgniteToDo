@@ -7,9 +7,11 @@ interface TaskProps {
 
 export function Task({ task }: TaskProps) {
   return (
-    <div key={task.id} className={styles.task}>
-      <input type="radio" name="task" checked={task.isCompleted}/>
-      <p className={task.isCompleted ? styles.isActive : ""}>{task.content}</p>
+    <div className={styles.task}>
+      <div>
+        <input type="radio" name="task" checked={task.isCompleted}/>
+        <p className={task.isCompleted ? styles.isActive : ""}>{task.content}</p>
+      </div>
       <button>
         <Trash size={16}/>
       </button>

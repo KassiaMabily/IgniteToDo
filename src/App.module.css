@@ -17,6 +17,7 @@
   height: 100%;
   flex: 1;
   background-color: var(--gray-500);
+  color: var(--gray-100);
 
   border-radius: 8px;
   border: 0;
@@ -44,8 +45,13 @@
   transition: background-color 0.1s;
 }
 
-.wrapper form button[type="submit"]:hover{
+.wrapper button[type=submit]:not(:disabled):hover {
   background-color: var(--blue);
+}
+
+.wrapper button[type=submit]:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
 }
 
 .container {
@@ -81,7 +87,10 @@
 }
 
 .content {
+  display: flex;
+  flex-direction: column;
   margin: 2rem 0;
+  gap: 0.75rem;
 }
 
 @media (max-width: 768px) {

@@ -3,5 +3,5 @@ interface ITask {
   content: string;
   isCompleted: boolean;
   createdAt: Date;
-  updatedAt: Date;
+  updatedAt?: Date | undefined;
 }
